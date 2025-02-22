@@ -36,7 +36,7 @@ export default function Navbar() {
           />
           <Link href="https://www.happycare.co.za" target="_blank">
             <h1 className="font-extrabold ps-5 cursor-pointer hover:text-white">
-              Themba
+              LIS - MacOS Laptop
             </h1>
           </Link>
           <h2 className="ps-5 cursor-pointer hover:text-white">File</h2>

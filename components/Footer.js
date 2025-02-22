@@ -9,6 +9,7 @@ export const runtime = "edge";
 export default function Footer() {
   const [isFinderOpen, setFinderOpen] = useState(false);
   const [isTerminalOpen, setTerminalOpen] = useState(false);
+  const [isSafariOpen, setSafariOpen] = useState(false);
 
   const openFinder = () => {
     setFinderOpen(true);
@@ -18,12 +19,20 @@ export default function Footer() {
     setTerminalOpen(true);
   };
 
+  const openSafari = () => {
+    setSafariOpen(true);
+  };
+
   const closeFinder = () => {
     setFinderOpen(false);
   };
 
   const closeTerminal = () => {
     setTerminalOpen(false);
+  };
+
+  const closeSafari = () => {
+    setSafariOpen(false);
   };
 
   return (
@@ -47,6 +56,15 @@ export default function Footer() {
           onClick={openTerminal}
         />
         {isTerminalOpen && <TerminalModal closeTerminal={closeTerminal} />}
+        <Image
+          src="/safari.png"
+          width={45}
+          height={38}
+          alt="Safari Icon"
+          className="transition duration-500 hover:scale-110 hover:-translate-y-4 cursor-pointer"
+          onClick={openSafari}
+        />
+        {isSafariOpen && <SafariModal closeSafari={closeSafari} />}
         <Image
           src="/settings.png"
           width={45}
@@ -193,7 +211,9 @@ const TerminalModal = ({ closeTerminal }) => {
           </div>
           <div className="flex items-center justify-start">
             <img src="/home.webp" width={20} height={20} alt="Home Icon" />
-            <p className="ps-2 text-sm text-white">jvstraphael10 - AI Assistant on Terminal</p>
+            <p className="ps-2 text-sm text-white">
+              jvstraphael10 - AI Assistant on Terminal
+            </p>
           </div>
           <div></div>
         </div>
@@ -232,3 +252,41 @@ const TerminalModal = ({ closeTerminal }) => {
     </div>
   );
 };
+
+const SafariModal = ({ closeSafari }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white shadow-lg rounded-lg w-[80%] h-[80%] p-0">
+      <div className="flex items-center justify-between mb-0 p-2">
+        <div className="flex items-center">
+          <div
+            className="w-3 h-3 rounded-full bg-red-500 mr-2"
+            onClick={closeSafari}
+          ></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+        </div>
+        <button
+          onClick={closeSafari}
+          className="text-gray-500 hover:text-red-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12.707 10l4.147-4.146a.5.5 0 1 0-.708-.708L12 9.293 7.854 5.146a.5.5 0 0 0-.708.708L11.293 10l-4.147 4.146a.5.5 0 1 0 .708.708L12 10.707l4.146 4.147a.5.5 0 0 0 .708-.708L12.707 10z"
+            />
+          </svg>
+        </button>
+      </div>
+      <iframe
+        src="https://v0-modern-browser-app-sictma.vercel.app/"
+        className="w-full h-full"
+        title="Safari Browser"
+      ></iframe>
+    </div>
+  </div>
+);
